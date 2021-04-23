@@ -136,3 +136,10 @@ ul a {
 display:block;
 stroke-dashoffset: 1;
 }
+
+
+.tituloTabla{
+    position: relative;
+    left: 15%;
+}
+

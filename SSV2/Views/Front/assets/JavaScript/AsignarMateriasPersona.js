@@ -55,16 +55,21 @@ function llenarTabla(materias) {
       html += `<tr id="tr" data-id="${materia.Id}">
           <td>${materia.NombrePersona}  ${materia.ApellidoPersona}</td>
           <td>${materia.Materia}</td>
-          <td class="tdBoton "><button class="buttonEditar far fa-edit"onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
-    	  <button class=" fas fa-trash-alt buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+          <td class="tdBoton "><button class="buttonEditar "onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
+    	  <button class=" buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
           </tr>`;
           tabla.innerHTML = html;
     } else if(materia.TipoPersona == 1 && htmlLocation == "http://127.0.0.1:5500/views/asignar_materia_alumno.html"){
       html += `<tr id="tr" data-id="${materia.Id}">
           <td>${materia.NombrePersona}  ${materia.ApellidoPersona}</td>
           <td>${materia.Materia}</td>
-          <td class="tdBoton "><button class="buttonEditar far fa-edit"onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
-    	  <button class=" fas fa-trash-alt buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+          <td class="tdBoton "><button class="buttonEditar "onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
+    	  <button class=" buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+
           </tr>`;
       tabla.innerHTML = html;
     }
@@ -139,8 +144,10 @@ function Eliminar(id) {
 }
 function ConfirmarEliminar(id){
 	swal({
-		title: "Esta seguro de eliminar el persona?",
-		text: "No podra recuperar la información del persona si lo elimina",
+
+		title: "Esta seguro de eliminar el alumno?",
+		text: "No podra recuperar la información del alumno si lo elimina",
+
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
@@ -171,6 +178,8 @@ boton.addEventListener("click", () => {
   validarRepeticion(nombrePersona.value, nombreMateria.value)
 });
 btnEditarPersona.addEventListener("click", () => {
-	Editar(idMateriaPersona.value, personaEditar.value, MateriaEditar.value);
+
+	Editar(idMateriaDocente.value, DocenteEditar.value, MateriaEditar.value);
+
 });
 
