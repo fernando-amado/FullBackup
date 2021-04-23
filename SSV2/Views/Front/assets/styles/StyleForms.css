@@ -195,7 +195,7 @@ color: #bb2929;
 th{
     font-size: 1.3vw;
 }
-.modalUpdate, .modalVer{
+.modalUpdate{
     background-color: #FFFFFF;
     position: absolute;
     min-width:30%;
