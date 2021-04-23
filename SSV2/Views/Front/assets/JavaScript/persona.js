@@ -141,8 +141,11 @@ function Editar(id, nDoc, nombres, apellidos, tDoc, estado) {
 					Tdoc_Id: parseInt(tDoc),
 					NDoc: nDoc,
 					Activo: estado == "1" ? true : false,
-					Tp_Id: ("http://127.0.0.1:5500/views/alumnos.html") ? 1 : 2
+
+					Tp_Id: (htmlLocation == "http://127.0.0.1:5500/views/alumnos.html") ? 1 : 2
+
 				})
+
 			})
 			.then((p) => {
 				swal("¡Transaccion Exitosa! ", "¡Se ha actualizado el alumno! ", "success");

@@ -55,16 +55,21 @@ function llenarTabla(materias) {
       html += `<tr id="tr" data-id="${materia.Id}">
           <td>${materia.NombrePersona}  ${materia.ApellidoPersona}</td>
           <td>${materia.Materia}</td>
-          <td class="tdBoton "><button class="buttonEditar far fa-edit"onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
-    	  <button class=" fas fa-trash-alt buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+          <td class="tdBoton "><button class="buttonEditar "onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
+    	  <button class=" buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
           </tr>`;
           tabla.innerHTML = html;
     } else if(materia.TipoPersona == 1 && htmlLocation == "http://127.0.0.1:5500/views/asignar_materia_alumno.html"){
       html += `<tr id="tr" data-id="${materia.Id}">
           <td>${materia.NombrePersona}  ${materia.ApellidoPersona}</td>
           <td>${materia.Materia}</td>
-          <td class="tdBoton "><button class="buttonEditar far fa-edit"onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
-    	  <button class=" fas fa-trash-alt buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+          <td class="tdBoton "><button class="buttonEditar "onclick="AbrirEditar('${materia.Id}','${materia.IdPersona}', '${materia.IdMateria}')">Editar</button>
+    	  <button class=" buttonEliminar" onclick="ConfirmarEliminar(${materia.Id})">Eliminar</button></td>
+
+
           </tr>`;
       tabla.innerHTML = html;
     }
