@@ -37,8 +37,8 @@ namespace SSV2.Controllers
                   from per in db.Personas
                   join td in db.TDocs on per.TDoc_Id equals td.Id
                   join tp in db.TipoPersonas on per.Tp_Id equals tp.Id
-                  join pm in db.PersonaMaterias on per.Id equals pm.Persona_Id
-                  join m in db.Materias on pm.Materia_Id equals m.Id
+                  //join pm in db.PersonaMaterias on per.Id equals pm.Persona_Id
+                  //join m in db.Materias on pm.Materia_Id equals m.Id
                   where per.Tp_Id == 1
                   select new
                   {
@@ -49,18 +49,40 @@ namespace SSV2.Controllers
                       NumeroDocumento = per.NDoc,
                       Tipodepersona = tp.Rol,
                       Activo = per.Activo,
-                      Notas = (from notmat in db.NotasMaterias
-                               join permat in db.PersonaMaterias on notmat.Id equals permat.Notas_Materias_Id
-                               join period in db.Periodoes on notmat.Periodo_Id equals period.Id
-                               where permat.Persona_Id == per.Id && permat.Materia_Id == m.Id
-                               select new { Notas = notmat.Notas, NombreP = period.NombreP, Idnota = notmat.Id }),
-                      Materia = m.Nombre,
-                      Materia_id = m.Id,
-                      Profesor = (from pro in db.Personas
-                                  join perma in db.PersonaMaterias on pro.Id equals perma.Persona_Id
-                                  where pro.Tp_Id == 2 && perma.Materia_Id == m.Id
-                                  select new { pro.Nombres })
+                      Materias = (from PM in db.PersonaMaterias
+                                  join NM in db.Materias on PM.Materia_Id equals NM.Id
+                                  //join N in db.NotasMaterias on PM.Notas_Materias_Id equals N.Id
+                                  where PM.Persona_Id == per.Id
+                                  group NM by new { Id = NM.Id, Nombre = NM.Nombre } into newgroup
+                                  select new
+                                  {
+                                      newgroup.Key.Id,
+                                      newgroup.Key.Nombre,
+
+                                      Notas = (from pm in db.PersonaMaterias
+                                               join
+                                               NMT in db.NotasMaterias on pm.Notas_Materias_Id equals NMT.Id
+                                               join
+pr in db.Periodoes on NMT.Periodo_Id equals pr.Id
+                                               where pm.Persona_Id == per.Id && pm.Materia_Id == newgroup.Key.Id
+                                               select new { nota = NMT.Notas, periodo = pr.NombreP }
+                                               )
+                                  }
+
+                                  )
+                      //Notas = (from notmat in db.NotasMaterias
+                      //         join permat in db.PersonaMaterias on notmat.Id equals permat.Notas_Materias_Id
+                      //         join period in db.Periodoes on notmat.Periodo_Id equals period.Id
+                      //         where permat.Persona_Id == per.Id && permat.Materia_Id == m.Id
+                      //         select new { Notas = notmat.Notas, NombreP = period.NombreP, idPeriodo = period.Id,Idnota = notmat.Id ,IdPersona=per.Id}),
+                      //Materia = m.Nombre,
+                      //Materia_id = m.Id,
+                      //Profesor = (from pro in db.Personas
+                      //            join perma in db.PersonaMaterias on pro.Id equals perma.Persona_Id
+                      //            where pro.Tp_Id == 2 && perma.Materia_Id == m.Id
+                      //            select new { pro.Nombres })
                   });
+            return lst;
             return lst;
         }
 

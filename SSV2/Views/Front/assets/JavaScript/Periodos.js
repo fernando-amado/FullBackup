@@ -89,8 +89,8 @@ function Editar(id, nombre,porcentaje) {
 	}).then(() => {
 		let tr = document.querySelector(`tr[data-id="${id}"]`);
 
-		tr.innerHTML = `<td>${nombre}</td><td>${porcentaje}%</td><td class="tdBoton "><button class="buttonEditar far fa-edit"onclick="AbrirEditar(${id},'${nombre}')">Editar</button>
-    <button class=" fas fa-trash-alt buttonEliminar" onclick="Eliminar(${id})">Eliminar</button></td>`;
+		tr.innerHTML = `<td>${nombre}</td><td>${porcentaje}%</td><td class="tdBoton "><button class="buttonEditar"onclick="AbrirEditar(${id},'${nombre}')">Editar</button>
+    <button class=" buttonEliminar" onclick="Eliminar(${id})">Eliminar</button></td>`;
 	}),
 		limpiarDatos(),
 		CloseUpdate();

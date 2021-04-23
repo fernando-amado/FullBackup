@@ -9,7 +9,7 @@ function listarAlumno() {
 		.then((personas) =>
 			personas.forEach((persona) => {
                 if (persona.Tp_Id==1) {
-                    console.log(persona)
+                
                     llenarTabla(persona);
                 }
 				

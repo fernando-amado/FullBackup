@@ -107,7 +107,8 @@ function AbrirEditar(Id, persona, Materia) {
 	MateriaEditar.value = Materia;
 }
 function Editar(id, Persona, Materia) {
-	fetch("https://localhost:44351/api/PersonaMaterias/" + id, {
+
+fetch("https://localhost:44351/api/PersonaMaterias/" + id, {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json"
@@ -137,8 +138,6 @@ function Eliminar(id) {
 	}).then(() => {
 		let tr = document.querySelector(`tr[data-id="${id}"]`);
 		tabla.removeChild(tr);
-		inputId.value = "";
-		inputNombre.value = "";
 
 	});
 }
@@ -164,8 +163,9 @@ function ConfirmarEliminar(id){
 function validarRepeticion(idP,idM){
   console.log("funcion sirve");
   (arrayMateria.some(personaMateria => ((personaMateria.IdPersona == idP) && (personaMateria.IdMateria == idM))) == true) ? 
-  alert('no puedes agregar esta persona porque se repite')
-  : Agregar(nombrePersona.value, nombreMateria.value);
+  swal("¡Transaccion Fallida! ", "-No puedes agregar esta persona porque ya tiene asignada una materia", "error")
+  : Agregar(idP, idM),
+  console.log('siempre se ejectua esto despues del trinario')
 }
 consultar();
 seleccionarPersona(nombrePersona);
@@ -176,6 +176,8 @@ boton.addEventListener("click", () => {
   validarRepeticion(nombrePersona.value, nombreMateria.value)
 });
 btnEditarPersona.addEventListener("click", () => {
-	Editar(idMateriaPersona.value, personaEditar.value, MateriaEditar.value);
+  (arrayMateria.some(personaMateria => ((personaMateria.IdPersona == personaEditar.value) && (personaMateria.IdMateria == MateriaEditar.value))) == true) ? 
+  swal("¡Transaccion Fallida! ", "-No puedes editar esta persona porque ya tiene esa materia asiganda", "error")
+  :	Editar(idMateriaPersona.value, personaEditar.value, MateriaEditar.value);
 });
 

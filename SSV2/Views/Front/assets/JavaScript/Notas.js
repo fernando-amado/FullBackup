@@ -206,7 +206,7 @@ function Agregar(nombre, materia, periodo, nota) {
     "¡Se han agregado las notas al alumno! ",
     "success"
   );
-  setInterval("actualizar()", 30);
+  setInterval("actualizar()", 30000);
   selectestudiante.value = "";
   selectmateria.value = "";
   selectPeriodo.value = "";
