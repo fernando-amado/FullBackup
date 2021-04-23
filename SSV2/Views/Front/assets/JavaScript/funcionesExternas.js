@@ -74,7 +74,7 @@ function MostrarNav() {
 
 let hmtlLocation = window.location.toString();
 
-hmtlLocation.includes("index") ? logicaImg() : console.log('funciona la validacion')
+hmtlLocation.includes("index") ? logicaImg() : console.log(' ')
 
 function logicaImg(){let imagenes = [
   "assets/img/Colegio1.png",
@@ -117,23 +117,26 @@ function ColorearBotones() {
     }
   }
 }
-
-//validar -------------------------------------------------
-
+}
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 const expresiones ={
-       nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-       apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-       nota: /^\d{1,2}$/, //Solo numeros del 0 al 5.
-       documento: /^\d{7,10}$/ //Solo numeros.
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    nota: /^\d{1,3}$/, //Solo numeros del 0 al 5.
+    documento: /^\d{7,10}$/ //Solo numeros.s
 }
+
+
+
 const campos = {
        nombre : false,
        apellido : false,
        nota : false,
        documento : false
 }
+
+
 const validarFormulario = (e) =>{
        switch (e.target.name){
               case "nombre":
@@ -150,6 +153,7 @@ const validarFormulario = (e) =>{
               break;
        }
 }
+
 const validarCampo = (expresion, input, campo) => {
        if(expresion.test(input.value)){
               document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");
@@ -172,10 +176,10 @@ const validarCampo = (expresion, input, campo) => {
               document.getElementById("ButtonAdd").style.backgroundColor="#658294"
        }
 }
+
+
 inputs.forEach((input) =>{
        input.addEventListener('keyup', validarFormulario);
        input.addEventListener('blur', validarFormulario);
 });
 
-
-}

@@ -135,13 +135,13 @@ pr in db.Periodoes on NMT.Periodo_Id equals pr.Id
                 return BadRequest();
             }
 
-            db.Entry(persona).State = EntityState.Modified;
 
             try
             {
+                db.Entry(persona).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
                 if (!PersonaExists(id))
                 {
@@ -149,7 +149,7 @@ pr in db.Periodoes on NMT.Periodo_Id equals pr.Id
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
 

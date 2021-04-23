@@ -48,7 +48,13 @@ function llenarTabla(m) {
 	PorcentajeEditar.addEventListener("keyup",()=>{validarPorcentaje(PorcentajeEditar) })
 
 	function validarPorcentaje(input){
-		(parseFloat(input.value) + totalArregloPorcentaje>100)?alert("te pasaste"):alert("hurra")
+		if(parseFloat(input.value) + totalArregloPorcentaje>100){
+			console.log(parseFloat(input.value) + totalArregloPorcentaje)
+			input.classList.remove("formulario__grupo-correcto");
+			input.classList.add('fa-times-circle');
+		}
+		input.classList.add("formulario__grupo-correcto");
+		input.classList.add('fa-check-circle');
 	}
 
 function Agregar(nombre,porcentaje) {
@@ -106,12 +112,19 @@ function Eliminar(id) {
 		body: JSON.stringify({
 			Id: parseInt(id)
 		})
-	}).then(() => {
-		let tr = document.querySelector(`tr[data-id="${id}"]`);
+	}).then((response) => {
+		if(response.status==400){
+			swal("Transacción Fallida","Verifique que el periodo no tenga notas asignadas","error")
+		}else{
+			swal("Transacción Exitosa","Se ha eliminado el periodo","success")
+			let tr = document.querySelector(`tr[data-id="${id}"]`);
 		tabla.removeChild(tr);
 		inputId.value = "";
 		inputNombre.value = "";
+		}
+		
 	});
 }
+
 
 listarPeriodo();

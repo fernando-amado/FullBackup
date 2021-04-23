@@ -28,7 +28,6 @@ function listarPersona() {
     .then((response) => response.json())
     .then((personas) =>
       personas.forEach((persona) => {
-        console.log(persona)
         if (
           persona.Tp_Id == 1 &&
           htmlLocation == "http://127.0.0.1:5500/views/alumnos.html"
@@ -53,7 +52,7 @@ function llenarTablaPersona(p) {
   <td>  ${p.TDoc_Id == 1 ? "CC" : "TI"}  </td>
   <td>  ${p.Activo ? "Activo" : "Inactivo"}  </td>`;
 	profe.innerHTML += `<td class="tdBoton ">
-  <button class="buttonEditar far fa-edit"onclick="AbrirEditar
+  <button class="buttonEditar"onclick="AbrirEditar
 	(${p.Id},
 	${p.NDoc},
 	'${p.Nombres}',
@@ -61,7 +60,7 @@ function llenarTablaPersona(p) {
     ${p.TDoc_Id},
 	${p.Activo}
 	)">Editar</button>
-  <button class="fas fa-trash-alt buttonEliminar" onclick="ConfirmarEliminar(${p.Id})">Eliminar</button></td>`;
+  <button class="buttonEliminar" onclick="ConfirmarEliminar(${p.Id})">Eliminar</button></td>`;
 	profe.setAttribute("data-id", p.Id);
 	tabla.appendChild(profe);
 	inputNombre.value = "";
@@ -147,9 +146,32 @@ function Editar(id, nDoc, nombres, apellidos, tDoc, estado) {
 				})
 
 			})
-			.then((p) => {
-				swal("¡Transaccion Exitosa! ", "¡Se ha actualizado el alumno! ", "success");
-				location.reload();
+			.then((response) => {
+				if(response.status==400)
+			{
+				swal ( "¡Transaccion Fallida! " ,"-Error el documento esta repetido \n -Campos Vacios", "error" );
+			}
+			else{
+				swal ( "¡Transaccion Exitosa! " , "¡Se ha agregado un nuevo alumno! " , "success" );
+				
+				let tr = document.querySelector(`tr[data-id="${id}"]`);
+    
+				tr.innerHTML = `<td> ${nDoc} </td>
+				<td>  ${nombres} </td>
+				<td>  ${apellidos} </td>
+				<td>  ${tDoc == 1 ? "CC" : "TI"}  </td>
+				<td>  ${estado =="1" ? "Activo" : "Inactivo"}  </td>
+				<td class="tdBoton ">
+				<button class="buttonEditar" onclick="AbrirEditar
+					(${id},
+					${nDoc},
+					'${nombres}',
+					'${apellidos}',
+					${tDoc},
+					${estado}
+					)">Editar</button>
+				<button class=" buttonEliminar" onclick="ConfirmarEliminar(${id})">Eliminar</button></td>`;
+			}
 			})
 			.catch((error) => {
 				console.error(error);

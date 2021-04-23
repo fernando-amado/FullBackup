@@ -96,11 +96,18 @@ namespace SSV2.Controllers
             {
                 return NotFound();
             }
+            try
+            {
+                db.Periodoes.Remove(periodo);
+                db.SaveChanges();
+                return Ok();
+            }
+            catch {
+                return BadRequest();
+            }
+          
 
-            db.Periodoes.Remove(periodo);
-            db.SaveChanges();
-
-            return Ok(periodo);
+            
         }
 
         protected override void Dispose(bool disposing)

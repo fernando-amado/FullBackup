@@ -20,7 +20,7 @@
      <!--datables estilo bootstrap 4 CSS-->
      <link rel="stylesheet" type="text/css"
          href="../assets/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-    <title>Peridos</title>
+    <title>Periodos</title>
 </head>
 
 <body>
@@ -53,20 +53,20 @@
                     <div class="formulario__grupo" id="grupo__nombre">
                         <label for="nombre" class="formulario__label">Nombre del periodo:</label>
                         <div class="formulario__grupo-input">
-                        <input type="text" id="nombre" class="formulario__input"name="nombre" placeholder="Escribe el Nombre">
+                        <input type="text" id="nombre" class="formulario__input" name="nombre" placeholder="Escribe el Nombre">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">El nombre debe tener al menos un digito y solo puede contener letras</p>
                     </div>
                 </div>
                 <div>
-                    <div class="formulario__grupo" id="grupo__porcentaje">
-                        <label for="nombre" class="formulario__label">Porcentaje del periodo:</label>
+                    <div class="formulario__grupo" id="grupo__nota">
+                        <label for="nota" class="formulario__label">Porcentaje del periodo:</label>
                         <div class="formulario__grupo-input">
-                        <input type="text" id="porcentaje" class="formulario__input"name="porcentaje" placeholder="Escribe el porcentaje">
+                        <input type="text" id="porcentaje" class="formulario__input" name="nota" placeholder="Escribe el porcentaje">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">El porcentaje </p>
+                    <p class="formulario__input-error">El porcentaje no debe sobrepasar el 100% y debe ser numerico</p>
                     </div>
                 </div>
             </div>
@@ -129,13 +129,12 @@
             </div>
         </form>
     </div>
-    <script src="../assets/JavaScript/modalMateria.js"></script>
-    <script src="../assets/JavaScript/menu.js"></script>
     <script src="../assets/JavaScript/Periodos.js"></script>
-
+    <script src="../assets/JavaScript/funcionesExternas.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     
     <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
     <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/popper/popper.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
