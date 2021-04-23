@@ -54,6 +54,7 @@ function llenarTabla(m) {
     <button class=" buttonEliminar" onclick="ConfirmarEliminar(${m.Id})">Eliminar</button></td>`;
 	tabla.appendChild(nMateria);
 	inputNombre.value = "";
+
 }
 
 function Agregar(m) {
