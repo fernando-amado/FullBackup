@@ -120,6 +120,7 @@ function ColorearBotones() {
 }
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
+const porcentajePeriodo = document.getElementById("porcentaje");
 const expresiones ={
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -132,7 +133,6 @@ const expresiones ={
 const campos = {
        nombre : false,
        apellido : false,
-       nota : false,
        documento : false
 }
 
@@ -145,15 +145,36 @@ const validarFormulario = (e) =>{
               case "apellido":
                      validarCampo(expresiones.apellido, e.target, 'apellido')
               break;
-              case "nota":
-                     validarCampo(expresiones.nota, e.target, 'nota')
-              break;
               case "documento":
                      validarCampo(expresiones.documento, e.target, 'documento')
               break;
        }
 }
 
+porcentajePeriodo.addEventListener("keyup",()=>{validarPorcentaje(porcentajePeriodo)})
+
+PorcentajeEditar.addEventListener("keyup",()=>{validarPorcentaje(PorcentajeEditar) })
+function validarPorcentaje(porcentajePeriodo){
+  if (parseFloat(porcentajePeriodo.value) + totalArregloPorcentaje<101){
+    document.getElementById("grupo__nota").classList.add("formulario__grupo-correcto");
+    document.getElementById("grupo__nota").classList.remove("formulario__grupo-incorrecto");
+    document.querySelector(`#grupo__nota i`).classList.add('fa-check-circle');
+    document.querySelector(`#grupo__nota i`).classList.remove('fa-times-circle');
+    document.getElementById("ButtonAdd").disabled=false;
+    document.getElementById("ButtonAdd").style.backgroundColor="#023859"
+    
+    
+  }else{
+   document.getElementById(`grupo__nota`).classList.add("formulario__grupo-incorrecto");
+   document.getElementById(`grupo__nota`).classList.remove("formulario__grupo-correcto");
+   document.querySelector(` #grupo__nota i`).classList.add('fa-times-circle');
+   document.querySelector(`#grupo__nota i`).classList.remove('fa-check-circle'); 
+   document.getElementById("ButtonAdd").disabled=true;
+    document.getElementById("ButtonAdd").style.backgroundColor="#658294"
+   
+  }
+
+}
 const validarCampo = (expresion, input, campo) => {
        if(expresion.test(input.value)){
               document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");

@@ -42,21 +42,6 @@ function llenarTabla(m) {
 	inputNombre.value = "";
 }
 
-
-	Porcentaje.addEventListener("keyup",()=>{validarPorcentaje(Porcentaje)})
-
-	PorcentajeEditar.addEventListener("keyup",()=>{validarPorcentaje(PorcentajeEditar) })
-
-	function validarPorcentaje(input){
-		if(parseFloat(input.value) + totalArregloPorcentaje>100){
-			console.log(parseFloat(input.value) + totalArregloPorcentaje)
-			input.classList.remove("formulario__grupo-correcto");
-			input.classList.add('fa-times-circle');
-		}
-		input.classList.add("formulario__grupo-correcto");
-		input.classList.add('fa-check-circle');
-	}
-
 function Agregar(nombre,porcentaje) {
 	fetch("https://localhost:44351/api/Periodoes", {
 		headers: {

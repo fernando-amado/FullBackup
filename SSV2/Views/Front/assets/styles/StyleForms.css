@@ -87,6 +87,9 @@ body{
     display: block;
 }
 /* Estilos para validaciones */
+.porcentaje{
+    display: none;
+}
 .formulario__grupo-correcto .formulario__validacion-estado{
     position: absolute;
     right: 10px;
